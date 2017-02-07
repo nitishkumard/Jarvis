@@ -17,7 +17,7 @@ int codeLen = 12;
 int toggle = 1;
 
 //PIR Sensor
-int calibrationTime = 10;
+int calibrationTime = 1; //ideal is 10
 long unsigned int lowIn;
 long unsigned int pause = 5000;
 boolean lockLow = true;
@@ -42,6 +42,8 @@ void setup()
     delay(1000);
   }
   irrecv.enableIRIn();
+  //send pi ready signal(optional)
+  Serial.println("pu");
 }
 
 void sendReadySignal()
@@ -87,24 +89,28 @@ void activateIRSensor()
     else if (results.value == 0xFE609F)
     { //FanSwitch
       codeValue = 0xB69;
+      //sendByIR(codeValue);
+      codeValue = 0x64800004;
+      sendByIR(codeValue);
+      codeValue = 0xFFFFFFFF;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE807F)
+    else if (results.value == 0xFEE817)
     { //MainLight
       codeValue = 0xB62;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE20DF)
+    else if (results.value == 0xFE6897)
     { //DressingLight
       codeValue = 0x351;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFEB04F)
-    { //NightLight
+    else if (results.value == 0xFEA857)
+    { //plug
       codeValue = 0xB6B;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE906F)
+    else if (results.value == 0xFE807F)
     { //Master
       codeValue = 0xB4C;
       sendByIR(codeValue);
@@ -120,6 +126,10 @@ void activateIRSensor()
     else if (results.value == 0xFE00FF)
     { //Speaker Volume mute
       Serial.println("svm");
+    }
+    else if (results.value == 0xFE20DF)
+    { //Speaker Channel Rotate
+      Serial.println("scr");
     }
 
     irrecv.enableIRIn();
