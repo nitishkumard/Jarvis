@@ -82,32 +82,44 @@ void activateIRSensor()
       sendByIR(codeValue);
     }
     else if (results.value == 0xFE50AF)
-    { //FanDown
+    { //+ and FanDown
       codeValue = 0xB4F;
       sendByIR(codeValue);
     }
     else if (results.value == 0xFE609F)
-    { //FanSwitch
+    { //- and FanSwitch
       codeValue = 0xB69;
-      //sendByIR(codeValue);
-      codeValue = 0x64800004;
-      sendByIR(codeValue);
-      codeValue = 0xFFFFFFFF;
       sendByIR(codeValue);
     }
     else if (results.value == 0xFEE817)
-    { //MainLight
+    { //1 and
+    }
+    else if (results.value == 0xFE6897)
+    { //2 and 
+    }
+    else if (results.value == 0xFEA857)
+    { 
+      //3 and
+    }
+    else if (results.value == 0xFEC837)
+    { 
+      //5 and FanSwitch
+      codeValue = 0xB69;
+      sendByIR(codeValue);
+    }
+    else if (results.value == 0xFE8877)
+    { //7 and plug
+      codeValue = 0xB6B;
+      sendByIR(codeValue);
+    }
+    else if (results.value == 0xFE08F7)
+    { //8 and MainLight
       codeValue = 0xB62;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE6897)
-    { //DressingLight
+    else if (results.value == 0xFEF00F)
+    { //9 and DressingLight
       codeValue = 0x351;
-      sendByIR(codeValue);
-    }
-    else if (results.value == 0xFEA857)
-    { //plug
-      codeValue = 0xB6B;
       sendByIR(codeValue);
     }
     else if (results.value == 0xFE807F)
