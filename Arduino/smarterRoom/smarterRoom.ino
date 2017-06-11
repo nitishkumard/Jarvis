@@ -68,25 +68,25 @@ void activateIRSensor()
   if (irrecv.decode(&results))
   {
     Serial.print("cRecieve:"); Serial.println(results.value, HEX);
-    if (results.value == 0xFE18E7)
+    if (results.value == 0xA8B47)
     { //Shut down pi
       Serial.println("ps");
     }
-    else if (results.value == 0xFE10EF)
+    else if (results.value == 0xA90)
     { //Reboot pi
       Serial.println("pr");
     }
-    else if (results.value == 0xFE40BF)
+    else if (results.value == 0x9CB47)
     { //FanUp
       codeValue = 0xB5E;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE50AF)
+    else if (results.value == 0xA3666B38)
     { //+ and FanDown
       codeValue = 0xB4F;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE609F)
+    else if (results.value == 0xBCB47)
     { //- and FanSwitch
       codeValue = 0xB69;
       sendByIR(codeValue);
@@ -101,37 +101,37 @@ void activateIRSensor()
     { 
       //3 and
     }
-    else if (results.value == 0xFEC837)
+    else if (results.value == 0x66B47)
     { 
       //5 and FanSwitch
       codeValue = 0xB69;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE8877)
+    else if (results.value == 0X96B47)
     { //7 and plug
       codeValue = 0xB6B;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE08F7)
+    else if (results.value == 0xE6B47)
     { //8 and MainLight
       codeValue = 0xB62;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFEF00F)
+    else if (results.value == 0x16B47)
     { //9 and DressingLight
       codeValue = 0x351;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFE807F)
+    else if (results.value == 0xA50)
     { //Master
       codeValue = 0xB4C;
       sendByIR(codeValue);
     }
-    else if (results.value == 0xFEA05F)
+    else if (results.value == 0x490)
     { //Speaker Volume up
       Serial.println("svu");
     }
-    else if (results.value == 0xFEE01F)
+    else if (results.value == 0xC90)
     { //Speaker Volume down
       Serial.println("svd");
     }
